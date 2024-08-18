@@ -22,9 +22,9 @@ const job_post = new mongoose.Schema({
 
         default:"Remote"
     },
-    userrole:{
+    Experiencelevel:{
         type:String,
-        enum:["SDE","Data Science","Marketing","Finance"]
+        enum:["Fresher","Mid-level","Experience","Executive"]
     },
     stipend:{
         require:true,
@@ -33,3 +33,5 @@ const job_post = new mongoose.Schema({
 },{timestamps:true})
 const jobpost = mongoose.model('jobpost',job_post);
 module.exports = jobpost;
+
+

@@ -3,7 +3,7 @@ async function checkemailpasswordhiring(req,res){
     try{
         const {email,password} = req.body
         const databasedetail = await job_seeker.findOne({Email:email});
-        console.log(password)
+        // console.log(password)
         if (!databasedetail){
             return res.json({'msg':'Email not found please do signup'})
          }
@@ -14,6 +14,7 @@ async function checkemailpasswordhiring(req,res){
 
         if (databasedetail.Email!=email || databasedetail.password!=password){
             return res.json({'msg':'Email and Password is not matching'});
+        
         }
         return res.json({'msg':'Credential Matched'});
     
