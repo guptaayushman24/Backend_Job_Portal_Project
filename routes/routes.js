@@ -11,7 +11,7 @@ const {getalljobsdetail} = require('../controller/job_display');
 const {jobseekerdashboard} = require('../controller/job_seeker_dashboard_controller');
 const {authenticateToken} = require('../middleware/job_seeker_login_auth');
 const {job_applied_by_user} = require('../controller/job_applied_by_user');
-const {jobfilter, jobfilterlocation, jobfiltercompanyname, specificrole, companynamewithspecificrole,experiencelevel} = require('../controller/job_filter');
+const {jobfilter, jobfilterlocation, jobfiltercompanyname, specificrole, companynamewithspecificrole,experiencelevel,duration} = require('../controller/job_filter');
 router.post('/jobseekerpost',validdetail,jobseekerpost);
 router.post('/jobpost',jobpostfunction)
 
@@ -25,6 +25,7 @@ router.post('/jobfiltercompanyname',jobfiltercompanyname);
 router.post('/specificrole',specificrole);
 router.post('/companynamewithspecificrole',companynamewithspecificrole);
 router.post('/experiencelevel',experiencelevel);
+router.post('/duration',duration);
 
 router.get('/jobseekerget',jobseekerget);
 router.get('/getalljobdetail',getalljobsdetail);

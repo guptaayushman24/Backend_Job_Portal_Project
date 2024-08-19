@@ -48,12 +48,36 @@ async function experiencelevel(req,res){
     }
     return res.json({'Job Location':data});
 }
-
+async function duration (req,res){
+    const body = req.body.duration;
+    console.log(body);
+    let query = {};
+    if (body<16){
+        query = { 'duration': { $lt: body } };
+    }
+    else if (body>16 && body<24){
+        query={
+            $and:[
+                {'duration':{$gt:body}},
+                {'duration':{$lt:body}}
+            ]
+        }
+    }
+    else if (duration>24){
+        query={'duration':{$gt:body}};
+    }
+    const data = await jobpost.find(query);
+    if  (data.length==0){
+        return res.json({'msg':`Currently there are no job or internship for ${body} weeks`});
+    }
+    return res.json({data});
+}
 module.exports = {
     jobfilter,
     jobfilterlocation,
     jobfiltercompanyname,
     specificrole,
     companynamewithspecificrole,
-    experiencelevel
+    experiencelevel,
+    duration
 }
