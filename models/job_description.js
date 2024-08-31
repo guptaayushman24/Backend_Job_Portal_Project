@@ -29,7 +29,8 @@ const job_post = new mongoose.Schema({
     stipend:{
         require:true,
         type:Number
-    }
+    },
+    hiringuserdetail:[{type:mongoose.Schema.Types.Object,'ref':'job_post'}]
 },{timestamps:true})
 const jobpost = mongoose.model('jobpost',job_post);
 module.exports = jobpost;

@@ -14,6 +14,7 @@ const jobseeker = new mongoose.Schema({
         unique:true
     },
     
+    
     password:{
         type:String,
         require:true

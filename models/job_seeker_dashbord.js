@@ -1,6 +1,5 @@
 const {Schema} = require('mongoose');
 const mongoose = require('mongoose');
-// const {authenticateToken} = require('../middleware/job_seeker_login_auth')
 const job_seeker_dashboard = new mongoose.Schema({
     role:{
         type:String,
@@ -13,7 +12,8 @@ const job_seeker_dashboard = new mongoose.Schema({
     userloginid:{
         type:Schema.Types.ObjectId
     },
-    userdetail:[{type:mongoose.Schema.Types.Object,'ref':'jobpost'}]
+    userdetail:[{type:mongoose.Schema.Types.Object,'ref':'jobpost'}],
+
 
 })
 

@@ -1,34 +1,29 @@
-const job_seeker = require('../models/job_hiring_user_detail_schema')
-async function checkemailpasswordhiring(req,res){
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = 'job_portal_$%^^78**';
+const job_hiring_user_detail_schema = require('../models/job_hiring_user_detail_schema')
+async function hiring_user_signin(req,res,next){
     try{
-        const {email,password} = req.body
-        const databasedetail = await job_seeker.findOne({Email:email});
-        // console.log(password)
-        if (!databasedetail){
-            return res.json({'msg':'Email not found please do signup'})
-         }
-         if (databasedetail.password !=password){
-             return res.json({'msg':'Incorrect password please check your password'});
-          }
-        
-
-        if (databasedetail.Email!=email || databasedetail.password!=password){
-            return res.json({'msg':'Email and Password is not matching'});
-        
+        const {email,password} = req.body;
+        const checkemail = await job_hiring_user_detail_schema.findOne({Email:email});
+        if (!checkemail){
+            return res.json({'msg':'Please do the signup'});
         }
-        return res.json({'msg':'Credential Matched'});
-    
+        if (password!=checkemail.password){
+            return res.json({'msg':'Please check your password'});
+        }
+        // Creating the token with the userid
+        const token = jwt.sign(checkemail.toJSON(),JWT_SECRET);
+        res.cookie("token",token);
+        
+        next();
+        return res.json({'msg':'Login Successfully',token});
     }
-    
     catch(err){
         console.log(err);
     
     }
-
-
 }
-
 module.exports = {
-
-    checkemailpasswordhiring
+    hiring_user_signin
 }
+// Now generate the toekn 

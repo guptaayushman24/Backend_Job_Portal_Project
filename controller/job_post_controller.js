@@ -2,6 +2,8 @@ const job_post = require('../models/job_description')
 async function jobpostfunction(req,res){
     try{
         const body = req.body;
+        const userid = req.user;
+        console.log(userid);
         const {companyname,role} = req.body;
         // role frontend
         const databasedata = await job_post.find({companyname:companyname});
@@ -11,13 +13,15 @@ async function jobpostfunction(req,res){
                 role:body.role,
                 companyname:body.companyname,
                 duration:body.duration,
-             
                 jobtype:body.jobtype,
+                
                 location:body.location,
                
                 userrole:body.userrole,
                 Experiencelevel:body.Experiencelevel,
                 stipend:body.stipend,
+                hiringuserdetail:userid
+
                })
                return res.json({data});
         }
@@ -37,6 +41,7 @@ async function jobpostfunction(req,res){
                 userrole:body.userrole,
                 Experiencelevel:body.Experiencelevel,
                 stipend:body.stipend,
+                hiringuserdetail:userid
                })
                return res.json({data});
             

@@ -19,10 +19,7 @@ const job_post = new mongoose.Schema({
         type:String,
         require:true
     },
-    companyname:{
-        type:String,
-        require:true,
-    }
+    
 })
 const job_post_schema = mongoose.model('job_post_schema',job_post);
 module.exports = job_post_schema;
