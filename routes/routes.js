@@ -16,7 +16,9 @@ const {hiring_user_signin} = require('../login/job_hiring_login')
 const {authenticateTokenhiring} = require('../middleware/job_hiring_login_auth')
 
 const { job_hiring_dashboard } = require('../controller/hiring_user_dashboard');
-router.post('/jobseekerpost',validdetail,jobseekerpost);
+const {getresume} = require('../controller/job_seeker_detail')
+const upload = require('../middleware/file_upload')
+router.post('/jobseekerpost',jobseekerpost);
 router.post('/jobpost',authenticateTokenhiring,jobpostfunction);
 router.post('/jobseekerlogin',checkemailpassword);
 router.post('/jobhiringuserdetail',job_hiring_auth,job_hiring_user_detail); // Sign up page for the hiring people // job_hiring_auth->middleware
@@ -29,12 +31,12 @@ router.post('/specificrole',specificrole);
 router.post('/companynamewithspecificrole',companynamewithspecificrole);
 router.post('/experiencelevel',experiencelevel);
 router.post('/duration',duration);
-router.post('/jobseekerdetail',authenticateToken,checkandpostjobseekerdetail);
-
+router.post('/jobseekerdetail',authenticateToken,upload,checkandpostjobseekerdetail);
 router.get('/jobseekerget',jobseekerget);
 router.get('/getalljobdetail',getalljobsdetail);
 router.get('/jobappliedbyuser/:id',job_applied_by_user);
 router.get('/hiringdashboard/:id',job_hiring_dashboard);
+router.get('/resume/:id',getresume);
 module.exports = router;
 
 

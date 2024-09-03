@@ -13,13 +13,17 @@ const job_seeker_detail = new mongoose.Schema({
     require:true
    }],
    collegename:{
-    require:true,
-
-    type:String
+      type:String,
+     
+      require:true
    },
    CGPA:{
-    requrie:true,
+      require:true,
     type:Number
+   },
+   resume:{
+   data:Buffer,
+   contentType:String
    },
    userdetail:[{type:mongoose.Schema.Types.Object,'ref':'job_seeker_schema'}]
 })

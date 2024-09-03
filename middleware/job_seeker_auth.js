@@ -3,7 +3,7 @@ function validdetail(req,res,next){
     const validNameRegex = /^[A-Za-z\s]+$/;
     const regexemail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const regexpassword = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    const {FirstName,LastName,Email,password,yearofexperience} = req.body;
+    const {FirstName,LastName,Email,password,yearofexperience,resume} = req.body;
     const body = req.body;
     console.log(body);
     try{
@@ -44,6 +44,9 @@ function validdetail(req,res,next){
         if (yearofexperience<0){
             return res.send({'msg':'Please enter the valid year of experience'});
         }
+        // if (!resume){
+        //     return res.json({'msg':'Pleae upload the resume'})
+        // }
         next();
     }
     catch(err){

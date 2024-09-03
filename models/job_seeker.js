@@ -22,7 +22,7 @@ const jobseeker = new mongoose.Schema({
     yearofexperience:{
         type:Number,
         require:true,
-    }
+    },
 })
 const job_seeker_schema = mongoose.model('job_seeker_schema',jobseeker);
 module.exports = job_seeker_schema;

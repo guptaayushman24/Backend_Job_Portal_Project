@@ -8,13 +8,14 @@ async function jobseekerpost (req,res){
         LastName:body.LastName,
         Email:body.Email,
         password:body.password,
-        yearofexperience:body.yearofexperience
+        yearofexperience:body.yearofexperience,
+        // resume:req.file.path
     })
     console.log(data)
     return res.json(data);
    }
+   
    catch(err){
-    
     console.log(err);
    
 }
